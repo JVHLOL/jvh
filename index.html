@@ -134,13 +134,15 @@ iframe {
 
   <!-- MUSIC -->
   <div class="music-player">
-    <div id="song-info">Loading song...</div>
-    <iframe id="frame" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <div id="song-info">See You Again - Tyler, The Creator</div>
+    <iframe 
+      src="https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB?utm_source=generator"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
   </div>
 </div>
 
 <script>
-/* TEXT TYPE */
 const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
 I play Roblox, Brawl Stars, Clash Royale and more.
 Big fan of Flamingo and iShowSpeed 🔥`;
@@ -153,32 +155,6 @@ function type() {
   }
 }
 type();
-
-/* PLAYLIST */
-const songs = [
-  { url: "https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB", name: "See You Again - Tyler, The Creator" },
-  { url: "https://open.spotify.com/embed/track/6xV7Be6XEvkSnighmh2Tzj", name: "Sugar on My Tongue - Tyler, The Creator" },
-  { url: "https://open.spotify.com/embed/track/5pz158yrIuE2EmhafSlZDf", name: "Pass Out" },
-  { url: "https://open.spotify.com/embed/track/1f5cbQtDrykjarZVrShaDI", name: "Drowning" },
-  { url: "https://open.spotify.com/embed/track/5sIcVo0Tv1kDGEqmtbRoqq", name: "Nuts" }
-];
-
-let index = 0;
-const frame = document.getElementById("frame");
-const info = document.getElementById("song-info");
-
-function loadSong() {
-  frame.src = songs[index].url + "?utm_source=generator";
-  info.textContent = songs[index].name;
-}
-
-loadSong();
-
-/* AUTO SWITCH */
-setInterval(() => {
-  index = (index + 1) % songs.length;
-  loadSong();
-}, 35000);
 </script>
 
 </body>
