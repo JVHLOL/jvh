@@ -1,100 +1,3 @@
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Share Tech Mono', monospace;
-}
-
-/* 🖱️ NEW PIXEL CURSOR */
-body {
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  position: relative;
-
-  cursor: url('https://cdn.custom-cursor.com/db/2747/1/3d_pixel_arrow.png') 6 0, auto;
-}
-
-a, button {
-  cursor: url('https://cdn.custom-cursor.com/db/2747/8/3d_pixel_hand.png') 10 0, pointer;
-}
-
-/* background */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif") center/cover no-repeat;
-  filter: brightness(0.35);
-  z-index: -3;
-}
-
-/* rainbow border */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  padding: 6px;
-  pointer-events: none;
-
-  background: linear-gradient(
-    45deg,
-    rgba(255,0,0,0.5),
-    rgba(255,165,0,0.5),
-    rgba(255,255,0,0.5),
-    rgba(0,255,0,0.5),
-    rgba(0,255,255,0.5),
-    rgba(0,0,255,0.5),
-    rgba(238,130,238,0.5),
-    rgba(255,0,0,0.5)
-  );
-
-  background-size: 300% 300%;
-  animation: rainbow 8s linear infinite;
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-@keyframes rainbow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
-}
-
-/* other unchanged CSS omitted for brevity */
-</style>
-```
-
----
-
-### Explanation of the fix:
-
-- Removed the universal cursor in `*` because it affects everything the same.
-
-- Assigned the pixel arrow cursor for the `body` (default).
-
-- Assigned the pixel hand cursor for clickable elements (`a` and `button`), which makes the hand cursor appear on hover or focus correctly.
-
-- Set proper hotspot positions as per image (these can be adjusted if the pointer seems off).
-
-- This will show the custom 3D pixel arrow for default cursor and hand when hovering over links.
-
----
-
-### No JS changes needed.
-
----
-
-# Final Full HTML with fixed cursor usage:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,9 +13,12 @@ body::after {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Share Tech Mono', monospace;
+
+  /* 🖱️ NEW PIXEL CURSOR */
+  cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png") 6 6, auto;
+  /* Added hotspot coordinates (6 6) to cursor url for proper pointer position */
 }
 
-/* 🖱️ NEW PIXEL CURSOR */
 body {
   height: 100vh;
   overflow: hidden;
@@ -121,12 +27,6 @@ body {
   align-items: center;
   color: white;
   position: relative;
-
-  cursor: url('https://cdn.custom-cursor.com/db/2747/1/3d_pixel_arrow.png') 6 0, auto;
-}
-
-a, button {
-  cursor: url('https://cdn.custom-cursor.com/db/2747/8/3d_pixel_hand.png') 10 0, pointer;
 }
 
 /* background */
@@ -134,7 +34,8 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif") center/cover no-repeat;
+  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif")
+    center/cover no-repeat;
   filter: brightness(0.35);
   z-index: -3;
 }
@@ -276,21 +177,21 @@ iframe {
     <div id="typed-text"></div>
 
     <div class="links">
-      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" />
+      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank" rel="noopener noreferrer">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" alt="Roblox Logo" />
       </a>
 
-      <a href="https://discord.com/users/jvh_o" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" />
+      <a href="https://discord.com/users/jvh_o" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord Logo" />
       </a>
     </div>
 
     <div class="neon">Songs I Like</div>
 
     <div class="music-player">
-      <iframe src="https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB?utm_source=generator"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-      </iframe>
+      <iframe
+        src="https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB?utm_source=generator"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
   </div>
 
@@ -312,7 +213,8 @@ Big fan of Flamingo and iShowSpeed 🔥`;
     document.addEventListener("mousemove", (e) => {
       const img = document.createElement("img");
 
-      img.src = "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
+      img.src =
+        "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
       img.className = "wolf";
       img.style.left = e.clientX + "px";
       img.style.top = e.clientY + "px";
