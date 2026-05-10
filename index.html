@@ -13,11 +13,14 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Share Tech Mono', monospace;
+
+  /* 🖱️ NEW PIXEL CURSOR */
+  cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png"), auto;
 }
 
 body {
   height: 100vh;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,55 +28,84 @@ body {
   position: relative;
 }
 
+/* background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif") center/cover no-repeat;
-  z-index: -2;
+  filter: brightness(0.35);
+  z-index: -3;
 }
 
-.overlay {
+/* rainbow border */
+body::after {
+  content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: -1;
+  padding: 6px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    45deg,
+    rgba(255,0,0,0.5),
+    rgba(255,165,0,0.5),
+    rgba(255,255,0,0.5),
+    rgba(0,255,0,0.5),
+    rgba(0,255,255,0.5),
+    rgba(0,0,255,0.5),
+    rgba(238,130,238,0.5),
+    rgba(255,0,0,0.5)
+  );
+
+  background-size: 300% 300%;
+  animation: rainbow 8s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* container */
 .container {
   max-width: 900px;
   padding: 30px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.08);
-  box-shadow: 0 0 30px rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
   text-align: center;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  z-index: 2;
+  position: relative;
 }
 
 h1 {
   font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-/* NEON TEXT */
-.neon {
-  font-size: 1.7rem;
-  margin: 15px 0;
-  color: #fff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 20px #fff,
-    0 0 40px #fff;
 }
 
 #typed-text {
   font-size: 1.1rem;
-  min-height: 180px;
+  min-height: 150px;
   white-space: pre-line;
 }
 
-/* LINKS */
+.neon {
+  font-size: 1.7rem;
+  margin-top: 20px;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff;
+}
+
+/* links */
 .links {
   margin-top: 20px;
   display: flex;
@@ -81,27 +113,30 @@ h1 {
   gap: 40px;
 }
 
-.links img {
-  width: 70px;
+.links a {
+  display: inline-block;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
   transition: 0.3s;
 }
 
-.links img:hover {
-  transform: scale(1.15);
+.links a:hover {
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.15);
 }
 
-/* MUSIC */
+.links img {
+  width: 65px;
+}
+
+/* music */
 .music-player {
-  margin-top: 25px;
+  margin-top: 20px;
   background: rgba(20, 20, 35, 0.92);
   border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-}
-
-#song-info {
-  font-size: 1.05rem;
-  margin-bottom: 10px;
 }
 
 iframe {
@@ -109,32 +144,45 @@ iframe {
   height: 152px;
   border-radius: 8px;
 }
+
+/* wolf trail */
+.wolf {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: pop 0.15s ease-out;
+  z-index: 9999;
+}
+
+@keyframes pop {
+  from { transform: translate(-50%, -50%) scale(0.2); }
+  to { transform: translate(-50%, -50%) scale(1); }
+}
 </style>
 </head>
 
 <body>
-<div class="overlay"></div>
 
 <div class="container">
   <h1>About Me</h1>
 
   <div id="typed-text"></div>
 
-  <div class="neon">Songs I Like</div>
-
-  <!-- LINKS -->
   <div class="links">
     <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
       <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
     </a>
-    <a href="https://discord.com" target="_blank">
+
+    <a href="https://discord.com/users/jvh_o" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
     </a>
   </div>
 
-  <!-- MUSIC -->
+  <div class="neon">Songs I Like</div>
+
   <div class="music-player">
-    <div id="song-info">See You Again - Tyler, The Creator</div>
     <iframe 
       src="https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB?utm_source=generator"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
@@ -151,10 +199,42 @@ let i = 0;
 function type() {
   if (i < text.length) {
     document.getElementById("typed-text").innerHTML += text[i++];
-    setTimeout(type, 25);
+    setTimeout(type, 15);
   }
 }
 type();
+
+/* wolf trail */
+document.addEventListener("mousemove", (e) => {
+  const img = document.createElement("img");
+
+  img.src = "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
+  img.className = "wolf";
+  img.style.left = e.clientX + "px";
+  img.style.top = e.clientY + "px";
+
+  document.body.appendChild(img);
+
+  let y = e.clientY;
+  let velocity = 0;
+  const gravity = 0.6;
+
+  function fall() {
+    velocity += gravity;
+    y += velocity;
+
+    img.style.top = y + "px";
+
+    if (y > window.innerHeight + 120) {
+      img.remove();
+      return;
+    }
+
+    requestAnimationFrame(fall);
+  }
+
+  fall();
+});
 </script>
 
 </body>
