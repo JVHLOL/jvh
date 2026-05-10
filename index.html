@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Profile</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 * {
   margin: 0;
@@ -21,40 +20,36 @@ body {
   align-items: center;
   color: white;
   position: relative;
-  background-color: #121212;
 }
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif")
-    center/cover no-repeat;
+  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif") center/cover no-repeat;
   z-index: -2;
-  filter: brightness(0.5);
 }
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0,0,0,0.6);
   z-index: -1;
 }
 .container {
   max-width: 900px;
   padding: 30px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 30px rgba(255,255,255,0.15);
   backdrop-filter: blur(10px);
 }
-h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
+h1 { font-size: 3rem; margin-bottom: 20px; }
+
 #typed-text {
   font-size: 1.2rem;
   min-height: 200px;
   white-space: pre-line;
 }
+
 /* LINKS */
 .links {
   margin-top: 20px;
@@ -66,18 +61,16 @@ h1 {
   width: 70px;
   transition: 0.3s;
 }
-.links img:hover {
-  transform: scale(1.15);
-}
+.links img:hover { transform: scale(1.15); }
+
 /* MUSIC PLAYER */
 .music-player {
   margin-top: 30px;
-  background: rgba(20, 20, 35, 0.9);
+  background: rgba(20, 20, 35, 0.92);
   border-radius: 12px;
-  padding: 14px 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
+  padding: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 #song-info {
@@ -85,112 +78,44 @@ h1 {
   margin-bottom: 10px;
   color: #fff;
   text-align: center;
-  user-select: none;
 }
 
-.player-main {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.progress-container {
-  flex: 1;
-  margin: 0 12px;
-  cursor: pointer;
-}
-
-.progress-bar {
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 999px;
-  overflow: hidden;
-  position: relative;
+.spotify-embed {
   width: 100%;
-}
-
-.progress {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #a855f7, #c026d3, #db2777);
-  transition: width 0.1s linear;
-}
-
-.time {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  margin-top: 4px;
-  color: #bbb;
-  user-select: none;
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.controls button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 50%;
-  transition: 0.2s;
-  line-height: 1;
-  user-select: none;
-}
-
-.controls button:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.15);
+  border-radius: 8px;
+  overflow: hidden;
 }
 </style>
 </head>
 <body>
 <div class="overlay"></div>
 <div class="container">
-  <h1>About Me</h1>
-  <div id="typed-text"></div>
+<h1>About Me</h1>
+<div id="typed-text"></div>
 
-  <!-- LINKS -->
-  <div class="links">
-    <a href="https://www.roblox.com/users/3442848028/profile" target="_blank" rel="noopener noreferrer">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" alt="Roblox" />
-    </a>
-    <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" />
-    </a>
+<!-- LINKS -->
+<div class="links">
+  <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+  </a>
+  <a href="https://discord.com" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+  </a>
+</div>
+
+<!-- MUSIC PLAYER -->
+<div class="music-player">
+  <div id="song-info">Click play on the player below</div>
+  
+  <div class="spotify-embed">
+    <iframe id="frame" 
+            style="border-radius:8px; width:100%; height:152px;" 
+            frameborder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
   </div>
-
-  <!-- MUSIC PLAYER -->
-  <div class="music-player">
-    <div id="song-info">Press play to start</div>
-
-    <div class="player-main">
-      <div class="controls">
-        <button onclick="prev()">❮❮</button>
-        <button onclick="toggle()" id="play">▶</button>
-        <button onclick="next()">❯❯</button>
-      </div>
-
-      <div class="progress-container" onclick="setProgress(event)">
-        <div class="progress-bar">
-          <div class="progress" id="progress"></div>
-        </div>
-        <div class="time">
-          <span id="current-time">0:00</span>
-          <span id="duration">0:00</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- AUDIO ELEMENT -->
-    <audio id="audio"></audio>
-  </div>
+</div>
 </div>
 
 <script>
@@ -210,97 +135,24 @@ type();
 
 /* Music Player */
 const songs = [
-  // Using direct MP3 URLs (free or sample)
-  // Replace with your own audio files if needed
-  { url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", name: "SoundHelix Song 1" },
-  { url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", name: "SoundHelix Song 2" },
-  { url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", name: "SoundHelix Song 3" },
-  { url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", name: "SoundHelix Song 4" },
-  { url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", name: "SoundHelix Song 5" }
+  { url: "https://open.spotify.com/embed/track/6xV7Be6XEvkSnighmh2Tzj", name: "Sugar on my tongue - Tyler, The Creator" },
+  { url: "https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB", name: "See You Again - Tyler, The Creator" },
+  { url: "https://open.spotify.com/embed/track/5pz158yrIuE2EmhafSlZDf", name: "Pass Out" },
+  { url: "https://open.spotify.com/embed/track/1f5cbQtDrykjarZVrShaDI", name: "Drowning" },
+  { url: "https://open.spotify.com/embed/track/5sIcVo0Tv1kDGEqmtbRoqq", name: "Nuts" }
 ];
 
 let index = 0;
-let playing = false;
-
-const audio = document.getElementById("audio");
-const playBtn = document.getElementById("play");
+const frame = document.getElementById("frame");
 const info = document.getElementById("song-info");
-const progress = document.getElementById("progress");
-const currentTimeEl = document.getElementById("current-time");
-const durationEl = document.getElementById("duration");
 
 function loadSong() {
-  audio.src = songs[index].url;
+  frame.src = songs[index].url + "?utm_source=generator&theme=0";
   info.innerText = songs[index].name;
-  audio.load();
 }
 
-// Play or Pause toggler
-function toggle() {
-  if (playing) {
-    audio.pause();
-  } else {
-    audio.play();
-  }
-}
-
-function next() {
-  index = (index + 1) % songs.length;
-  loadSong();
-  if (playing) audio.play();
-}
-
-function prev() {
-  index = (index - 1 + songs.length) % songs.length;
-  loadSong();
-  if (playing) audio.play();
-}
-
-// Update progress bar as audio plays
-audio.addEventListener("timeupdate", () => {
-  if (!audio.duration) return;
-
-  const progressPercent = (audio.currentTime / audio.duration) * 100;
-  progress.style.width = progressPercent + "%";
-
-  currentTimeEl.textContent = formatTime(audio.currentTime);
-  durationEl.textContent = formatTime(audio.duration);
-});
-
-// Play event
-audio.addEventListener("play", () => {
-  playing = true;
-  playBtn.innerText = "❚❚";
-});
-
-// Pause event
-audio.addEventListener("pause", () => {
-  playing = false;
-  playBtn.innerText = "▶";
-});
-
-// When song ends, auto-switch to next song
-audio.addEventListener("ended", next);
-
-// Format time in MM:SS
-function formatTime(sec) {
-  const minutes = Math.floor(sec / 60);
-  const seconds = Math.floor(sec % 60);
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
-
-// Allow progress bar click to set audio position
-function setProgress(e) {
-  const width = e.currentTarget.clientWidth;
-  const clickX = e.offsetX;
-  const newTime = (clickX / width) * audio.duration;
-  audio.currentTime = newTime;
-}
-
-// Initialize player
+// Load first song on start
 loadSong();
-durationEl.textContent = "0:00";
-
 </script>
 </body>
 </html>
