@@ -14,9 +14,7 @@
   box-sizing: border-box;
   font-family: 'Share Tech Mono', monospace;
 
-  /* 🖱️ NEW PIXEL CURSOR */
   cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png") 6 6, auto;
-  /* Added hotspot coordinates (6 6) to cursor url for proper pointer position */
 }
 
 body {
@@ -29,7 +27,6 @@ body {
   position: relative;
 }
 
-/* background */
 body::before {
   content: "";
   position: fixed;
@@ -40,7 +37,6 @@ body::before {
   z-index: -3;
 }
 
-/* rainbow border */
 body::after {
   content: "";
   position: fixed;
@@ -71,15 +67,10 @@ body::after {
 }
 
 @keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 300% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
 }
 
-/* container */
 .container {
   max-width: 900px;
   padding: 30px;
@@ -95,6 +86,12 @@ h1 {
   font-size: 3rem;
 }
 
+.birthday {
+  margin-top: 8px;
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
 #typed-text {
   font-size: 1.1rem;
   min-height: 150px;
@@ -108,7 +105,6 @@ h1 {
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
 }
 
-/* links */
 .links {
   margin-top: 20px;
   display: flex;
@@ -134,7 +130,6 @@ h1 {
   width: 65px;
 }
 
-/* music */
 .music-player {
   margin-top: 20px;
   background: rgba(20, 20, 35, 0.92);
@@ -148,7 +143,6 @@ iframe {
   border-radius: 8px;
 }
 
-/* wolf trail */
 .wolf {
   position: fixed;
   width: 38px;
@@ -160,12 +154,8 @@ iframe {
 }
 
 @keyframes pop {
-  from {
-    transform: translate(-50%, -50%) scale(0.2);
-  }
-  to {
-    transform: translate(-50%, -50%) scale(1);
-  }
+  from { transform: translate(-50%, -50%) scale(0.2); }
+  to { transform: translate(-50%, -50%) scale(1); }
 }
 </style>
 </head>
@@ -174,15 +164,18 @@ iframe {
   <div class="container">
     <h1>About Me</h1>
 
+    <!-- 👇 BIRTHDAY ADDED HERE -->
+    <div class="birthday">Birthday: 2/21/2012</div>
+
     <div id="typed-text"></div>
 
     <div class="links">
-      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank" rel="noopener noreferrer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" alt="Roblox Logo" />
+      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" />
       </a>
 
-      <a href="https://discord.com/users/jvh_o" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord Logo" />
+      <a href="https://discord.com/users/jvh_o" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" />
       </a>
     </div>
 
@@ -209,26 +202,20 @@ Big fan of Flamingo and iShowSpeed 🔥`;
     }
     type();
 
-    /* wolf trail */
     document.addEventListener("mousemove", (e) => {
       const img = document.createElement("img");
-
-      img.src =
-        "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
+      img.src = "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
       img.className = "wolf";
       img.style.left = e.clientX + "px";
       img.style.top = e.clientY + "px";
-
       document.body.appendChild(img);
 
       let y = e.clientY;
       let velocity = 0;
-      const gravity = 0.6;
 
       function fall() {
-        velocity += gravity;
+        velocity += 0.6;
         y += velocity;
-
         img.style.top = y + "px";
 
         if (y > window.innerHeight + 120) {
