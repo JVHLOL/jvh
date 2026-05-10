@@ -66,9 +66,9 @@ h1 { font-size: 3rem; margin-bottom: 20px; }
 /* MUSIC PLAYER */
 .music-player {
   margin-top: 30px;
-  background: rgba(20, 20, 35, 0.9);
+  background: rgba(20, 20, 35, 0.92);
   border-radius: 12px;
-  padding: 14px 18px;
+  padding: 16px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
   border: 1px solid rgba(255,255,255,0.1);
 }
@@ -80,58 +80,10 @@ h1 { font-size: 3rem; margin-bottom: 20px; }
   text-align: center;
 }
 
-.player-main {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.progress-container {
-  flex: 1;
-  margin: 0 12px;
-}
-
-.progress-bar {
-  height: 4px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 999px;
+.spotify-embed {
+  width: 100%;
+  border-radius: 8px;
   overflow: hidden;
-  position: relative;
-}
-.progress {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #a855f7, #c026d3, #db2777);
-  transition: width 0.3s linear;
-}
-
-.time {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  margin-top: 4px;
-  color: #bbb;
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.controls button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 50%;
-  transition: 0.2s;
-  line-height: 1;
-}
-.controls button:hover {
-  background: rgba(255,255,255,0.15);
-  transform: scale(1.15);
 }
 </style>
 </head>
@@ -153,27 +105,16 @@ h1 { font-size: 3rem; margin-bottom: 20px; }
 
 <!-- MUSIC PLAYER -->
 <div class="music-player">
-  <div id="song-info">Press play to start</div>
+  <div id="song-info">Click play on the player below</div>
   
-  <div class="player-main">
-    <div class="controls">
-      <button onclick="prev()">❮❮</button>
-      <button onclick="toggle()" id="play">▶</button>
-      <button onclick="next()">❯❯</button>
-    </div>
-
-    <div class="progress-container">
-      <div class="progress-bar">
-        <div class="progress" id="progress"></div>
-      </div>
-      <div class="time">
-        <span id="current-time">0:00</span>
-        <span id="duration">4:20</span>
-      </div>
-    </div>
+  <div class="spotify-embed">
+    <iframe id="frame" 
+            style="border-radius:8px; width:100%; height:152px;" 
+            frameborder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
   </div>
-
-  <iframe id="frame" style="display:none; width:100%; height:0; border:none;" allow="autoplay" frameborder="0"></iframe>
 </div>
 </div>
 
@@ -202,62 +143,16 @@ const songs = [
 ];
 
 let index = 0;
-let playing = false;
-
 const frame = document.getElementById("frame");
-const playBtn = document.getElementById("play");
 const info = document.getElementById("song-info");
-const progress = document.getElementById("progress");
-const currentTimeEl = document.getElementById("current-time");
 
 function loadSong() {
-  frame.src = songs[index].url + "?autoplay=1&theme=0";
+  frame.src = songs[index].url + "?utm_source=generator&theme=0";
   info.innerText = songs[index].name;
 }
 
-function toggle() {
-  playing = !playing;
-  if (playing) {
-    loadSong();
-    playBtn.innerText = "❚❚";
-    startProgress();
-  } else {
-    frame.src = "";
-    playBtn.innerText = "▶";
-    clearInterval(progressInterval);
-  }
-}
-
-function next() {
-  index = (index + 1) % songs.length;
-  if (playing) loadSong();
-  else info.innerText = songs[index].name;
-}
-
-function prev() {
-  index = (index - 1 + songs.length) % songs.length;
-  if (playing) loadSong();
-  else info.innerText = songs[index].name;
-}
-
-/* Fake Progress */
-let progressInterval;
-function startProgress() {
-  clearInterval(progressInterval);
-  let percent = 0;
-  progressInterval = setInterval(() => {
-    if (!playing) return;
-    percent += 1.8;
-    if (percent >= 100) percent = 0;
-    
-    progress.style.width = percent + "%";
-    
-    let currentSec = Math.floor((percent / 100) * 260);
-    let min = Math.floor(currentSec / 60);
-    let sec = currentSec % 60;
-    currentTimeEl.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
-  }, 120);
-}
+// Load first song on start
+loadSong();
 </script>
 </body>
 </html>
