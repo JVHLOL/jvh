@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Profile</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
 <style>
 * {
   margin: 0;
@@ -12,6 +14,7 @@
   box-sizing: border-box;
   font-family: 'Share Tech Mono', monospace;
 }
+
 body {
   height: 100vh;
   overflow: auto;
@@ -21,6 +24,7 @@ body {
   color: white;
   position: relative;
 }
+
 body::before {
   content: "";
   position: fixed;
@@ -28,12 +32,14 @@ body::before {
   background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif") center/cover no-repeat;
   z-index: -2;
 }
+
 .overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
   z-index: -1;
 }
+
 .container {
   max-width: 900px;
   padding: 30px;
@@ -41,12 +47,29 @@ body::before {
   background: rgba(255,255,255,0.08);
   box-shadow: 0 0 30px rgba(255,255,255,0.15);
   backdrop-filter: blur(10px);
+  text-align: center;
 }
-h1 { font-size: 3rem; margin-bottom: 20px; }
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+/* NEON TEXT */
+.neon {
+  font-size: 1.7rem;
+  margin: 15px 0;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #fff;
+}
 
 #typed-text {
-  font-size: 1.2rem;
-  min-height: 200px;
+  font-size: 1.1rem;
+  min-height: 180px;
   white-space: pre-line;
 }
 
@@ -57,69 +80,67 @@ h1 { font-size: 3rem; margin-bottom: 20px; }
   justify-content: center;
   gap: 40px;
 }
+
 .links img {
   width: 70px;
   transition: 0.3s;
 }
-.links img:hover { transform: scale(1.15); }
 
-/* MUSIC PLAYER */
+.links img:hover {
+  transform: scale(1.15);
+}
+
+/* MUSIC */
 .music-player {
-  margin-top: 30px;
+  margin-top: 25px;
   background: rgba(20, 20, 35, 0.92);
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.1);
 }
 
 #song-info {
   font-size: 1.05rem;
   margin-bottom: 10px;
-  color: #fff;
-  text-align: center;
 }
 
-.spotify-embed {
+iframe {
   width: 100%;
+  height: 152px;
   border-radius: 8px;
-  overflow: hidden;
 }
 </style>
 </head>
+
 <body>
 <div class="overlay"></div>
+
 <div class="container">
-<h1>About Me</h1>
-<div id="typed-text"></div>
+  <h1>About Me</h1>
 
-<!-- LINKS -->
-<div class="links">
-  <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
-  </a>
-  <a href="https://discord.com" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
-  </a>
-</div>
+  <div id="typed-text"></div>
 
-<!-- MUSIC PLAYER -->
-<div class="music-player">
-  <div id="song-info">Click play on the player below</div>
-  
-  <div class="spotify-embed">
-    <iframe id="frame" 
-            style="border-radius:8px; width:100%; height:152px;" 
-            frameborder="0" 
-            allowfullscreen="" 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-    </iframe>
+  <div class="neon">Songs I Like</div>
+
+  <!-- LINKS -->
+  <div class="links">
+    <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+    </a>
+    <a href="https://discord.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+    </a>
   </div>
-</div>
+
+  <!-- MUSIC -->
+  <div class="music-player">
+    <div id="song-info">Loading song...</div>
+    <iframe id="frame" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  </div>
 </div>
 
 <script>
-/* Typing Effect */
+/* TEXT TYPE */
 const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
 I play Roblox, Brawl Stars, Clash Royale and more.
 Big fan of Flamingo and iShowSpeed 🔥`;
@@ -128,15 +149,15 @@ let i = 0;
 function type() {
   if (i < text.length) {
     document.getElementById("typed-text").innerHTML += text[i++];
-    setTimeout(type, 30);
+    setTimeout(type, 25);
   }
 }
 type();
 
-/* Music Player */
+/* PLAYLIST */
 const songs = [
-  { url: "https://open.spotify.com/embed/track/6xV7Be6XEvkSnighmh2Tzj", name: "Sugar on my tongue - Tyler, The Creator" },
   { url: "https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB", name: "See You Again - Tyler, The Creator" },
+  { url: "https://open.spotify.com/embed/track/6xV7Be6XEvkSnighmh2Tzj", name: "Sugar on My Tongue - Tyler, The Creator" },
   { url: "https://open.spotify.com/embed/track/5pz158yrIuE2EmhafSlZDf", name: "Pass Out" },
   { url: "https://open.spotify.com/embed/track/1f5cbQtDrykjarZVrShaDI", name: "Drowning" },
   { url: "https://open.spotify.com/embed/track/5sIcVo0Tv1kDGEqmtbRoqq", name: "Nuts" }
@@ -147,12 +168,18 @@ const frame = document.getElementById("frame");
 const info = document.getElementById("song-info");
 
 function loadSong() {
-  frame.src = songs[index].url + "?utm_source=generator&theme=0";
-  info.innerText = songs[index].name;
+  frame.src = songs[index].url + "?utm_source=generator";
+  info.textContent = songs[index].name;
 }
 
-// Load first song on start
 loadSong();
+
+/* AUTO SWITCH */
+setInterval(() => {
+  index = (index + 1) % songs.length;
+  loadSong();
+}, 35000);
 </script>
+
 </body>
 </html>
