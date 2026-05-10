@@ -14,8 +14,9 @@
   box-sizing: border-box;
   font-family: 'Share Tech Mono', monospace;
 
-  /* Removed custom cursor */
-  /* cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png"), auto; */
+  /* 🖱️ NEW PIXEL CURSOR */
+  cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png") 6 6, auto;
+  /* Added hotspot coordinates (6 6) to cursor url for proper pointer position */
 }
 
 body {
@@ -62,7 +63,9 @@ body::after {
   background-size: 300% 300%;
   animation: rainbow 8s linear infinite;
 
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
@@ -144,6 +147,26 @@ iframe {
   height: 152px;
   border-radius: 8px;
 }
+
+/* wolf trail */
+.wolf {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: pop 0.15s ease-out;
+  z-index: 9999;
+}
+
+@keyframes pop {
+  from {
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 </style>
 </head>
 
@@ -159,7 +182,7 @@ iframe {
       </a>
 
       <a href="https://discord.com/users/jvh_o" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord Icon" />
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord Logo" />
       </a>
     </div>
 
@@ -168,9 +191,7 @@ iframe {
     <div class="music-player">
       <iframe
         src="https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB?utm_source=generator"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        title="Spotify music player"
-      ></iframe>
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
   </div>
 
@@ -183,12 +204,43 @@ Big fan of Flamingo and iShowSpeed 🔥`;
     function type() {
       if (i < text.length) {
         document.getElementById("typed-text").innerHTML += text[i++];
-        setTimeout(type, 50); // slowed from 15ms to 50ms
+        setTimeout(type, 50);
       }
     }
     type();
 
-    // Removed wolf trail mouse follower functionality
+    /* wolf trail */
+    document.addEventListener("mousemove", (e) => {
+      const img = document.createElement("img");
+
+      img.src =
+        "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
+      img.className = "wolf";
+      img.style.left = e.clientX + "px";
+      img.style.top = e.clientY + "px";
+
+      document.body.appendChild(img);
+
+      let y = e.clientY;
+      let velocity = 0;
+      const gravity = 0.6;
+
+      function fall() {
+        velocity += gravity;
+        y += velocity;
+
+        img.style.top = y + "px";
+
+        if (y > window.innerHeight + 120) {
+          img.remove();
+          return;
+        }
+
+        requestAnimationFrame(fall);
+      }
+
+      fall();
+    });
   </script>
 </body>
 </html>
