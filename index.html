@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    /* FIXED GIF BACKGROUND (GitHub Pages safe) */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("https://giphy.com/gifs/bmw-snowy-car-edit-tZKET59fOmmDzzHMjY") center/cover no-repeat;
+      z-index: -2;
+    }
+
+    /* DARK OVERLAY */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 900px;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 30px rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(255,255,255,0.8);
+    }
+
+    #typed-text {
+      font-size: 1.2rem;
+      line-height: 2rem;
+      min-height: 220px;
+      white-space: pre-line;
+      border-right: 3px solid white;
+      display: inline-block;
+    }
+
+    .links {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .social {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .links img {
+      width: 70px;
+      height: 70px;
+      transition: 0.3s;
+      filter: drop-shadow(0 0 10px white);
+    }
+
+    .links img:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 20px white);
+    }
+
+    .label {
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h1>About Me</h1>
+    <div id="typed-text"></div>
+
+    <div class="links">
+      <div class="social">
+        <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+        </a>
+        <div class="label">Roblox</div>
+      </div>
+
+      <div class="social">
+        <a href="https://discord.com/users/jvh_o" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+        </a>
+        <div class="label">Discord</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
+
+I play Roblox, Brawl Stars, Clash Royale and a bunch of other games.
+
+Big fan of Flamingo and iShowSpeed 🔥
+
+Favorite anime: Dragon Ball Z (DBZ)`;
+
+    let i = 0;
+    const speed = 35;
+    const typedText = document.getElementById("typed-text");
+
+    function typeWriter() {
+      if (i < text.length) {
+        typedText.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    typeWriter();
+  </script>
+</body>
+</html>
