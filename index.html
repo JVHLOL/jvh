@@ -19,7 +19,6 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  text-align: center;
   position: relative;
 }
 body::before {
@@ -32,7 +31,7 @@ body::before {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.6);
   z-index: -1;
 }
 .container {
@@ -49,7 +48,6 @@ h1 { font-size: 3rem; margin-bottom: 20px; }
   font-size: 1.2rem;
   min-height: 200px;
   white-space: pre-line;
-  border-right: 3px solid white;
 }
 
 /* LINKS */
@@ -62,98 +60,78 @@ h1 { font-size: 3rem; margin-bottom: 20px; }
 .links img {
   width: 70px;
   transition: 0.3s;
-  filter: drop-shadow(0 0 10px white);
 }
 .links img:hover { transform: scale(1.15); }
 
 /* MUSIC PLAYER */
 .music-player {
-  margin-top: 25px;
-  padding: 20px;
-  border-radius: 15px;
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(8px);
+  margin-top: 30px;
+  background: rgba(20, 20, 35, 0.9);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 #song-info {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
-  min-height: 28px;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
 }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  margin: 15px 0;
-}
-
-.controls button {
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: 2px solid rgba(255,255,255,0.3);
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  font-size: 24px;
+.player-main {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4),
-              inset 0 2px 4px rgba(255,255,255,0.3),
-              inset 0 -2px 4px rgba(0,0,0,0.4);
+  gap: 12px;
 }
 
-.controls button:hover {
-  transform: scale(1.1);
-  background: rgba(0, 0, 0, 0.8);
-  border-color: white;
+.progress-container {
+  flex: 1;
+  margin: 0 12px;
 }
 
-#play {
-  width: 65px;
-  height: 65px;
-  font-size: 28px;
-}
-
-/* Progress Bar */
 .progress-bar {
-  width: 100%;
-  height: 8px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 10px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 999px;
   overflow: hidden;
-  margin: 15px 0;
+  position: relative;
 }
 .progress {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+  background: linear-gradient(90deg, #a855f7, #c026d3, #db2777);
   transition: width 0.3s linear;
-  animation: rainbow 4s linear infinite;
 }
 
-@keyframes rainbow {
-  0%   { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
+.time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  color: #bbb;
 }
 
-/* Volume */
-.volume {
+.controls {
   display: flex;
   align-items: center;
-  gap: 10px;
-  justify-content: center;
+  gap: 8px;
 }
-.volume button {
+.controls button {
   background: none;
   border: none;
+  color: white;
   font-size: 24px;
   cursor: pointer;
-  padding: 5px;
+  padding: 6px 8px;
+  border-radius: 50%;
+  transition: 0.2s;
+  line-height: 1;
+}
+.controls button:hover {
+  background: rgba(255,255,255,0.15);
+  transform: scale(1.15);
 }
 </style>
 </head>
@@ -177,22 +155,25 @@ h1 { font-size: 3rem; margin-bottom: 20px; }
 <div class="music-player">
   <div id="song-info">Press play to start</div>
   
-  <div class="controls">
-    <button onclick="prev()">⏮</button>
-    <button onclick="toggle()" id="play">▶</button>
-    <button onclick="next()">⏭</button>
+  <div class="player-main">
+    <div class="controls">
+      <button onclick="prev()">❮❮</button>
+      <button onclick="toggle()" id="play">▶</button>
+      <button onclick="next()">❯❯</button>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <div class="time">
+        <span id="current-time">0:00</span>
+        <span id="duration">4:20</span>
+      </div>
+    </div>
   </div>
 
-  <div class="progress-bar">
-    <div class="progress" id="progress"></div>
-  </div>
-
-  <div class="volume">
-    <button onclick="toggleMute()">🔊</button>
-    <input type="range" min="0" max="1" step="0.01" value="1" id="vol">
-  </div>
-
-  <iframe id="frame" style="display:none; width:100%; height:80px; border:none;" allow="autoplay"></iframe>
+  <iframe id="frame" style="display:none; width:100%; height:0; border:none;" allow="autoplay" frameborder="0"></iframe>
 </div>
 </div>
 
@@ -213,25 +194,24 @@ type();
 
 /* Music Player */
 const songs = [
-  { url: "https://open.spotify.com/embed/track/5pz158yrIuE2EmhafSlZDf", name: "Industry Baby" },
-  { url: "https://open.spotify.com/embed/track/1f5cbQtDrykjarZVrShaDI", name: "Kiss Me More" },
-  { url: "https://open.spotify.com/embed/track/5sIcVo0Tv1kDGEqmtbRoqq", name: "Levitating" },
-  { url: "https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB", name: "Stay" },
-  { url: "https://open.spotify.com/embed/track/6xV7Be6XEvkSnighmh2Tzj", name: "Peaches" }
+  { url: "https://open.spotify.com/embed/track/6xV7Be6XEvkSnighmh2Tzj", name: "Sugar on my tongue - Tyler, The Creator" },
+  { url: "https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB", name: "See You Again - Tyler, The Creator" },
+  { url: "https://open.spotify.com/embed/track/5pz158yrIuE2EmhafSlZDf", name: "Pass Out" },
+  { url: "https://open.spotify.com/embed/track/1f5cbQtDrykjarZVrShaDI", name: "Drowning" },
+  { url: "https://open.spotify.com/embed/track/5sIcVo0Tv1kDGEqmtbRoqq", name: "Nuts" }
 ];
 
 let index = 0;
 let playing = false;
-let muted = false;
 
 const frame = document.getElementById("frame");
 const playBtn = document.getElementById("play");
 const info = document.getElementById("song-info");
 const progress = document.getElementById("progress");
-const volSlider = document.getElementById("vol");
+const currentTimeEl = document.getElementById("current-time");
 
 function loadSong() {
-  frame.src = songs[index].url + "?autoplay=1";
+  frame.src = songs[index].url + "?autoplay=1&theme=0";
   info.innerText = songs[index].name;
 }
 
@@ -239,12 +219,12 @@ function toggle() {
   playing = !playing;
   if (playing) {
     loadSong();
-    playBtn.innerText = "⏸";
-    progress.style.animationPlayState = "running";
+    playBtn.innerText = "❚❚";
+    startProgress();
   } else {
     frame.src = "";
     playBtn.innerText = "▶";
-    progress.style.animationPlayState = "paused";
+    clearInterval(progressInterval);
   }
 }
 
@@ -260,26 +240,24 @@ function prev() {
   else info.innerText = songs[index].name;
 }
 
-function toggleMute() {
-  muted = !muted;
-  frame.style.opacity = muted ? "0.3" : "1";
-  volSlider.value = muted ? 0 : 1;
+/* Fake Progress */
+let progressInterval;
+function startProgress() {
+  clearInterval(progressInterval);
+  let percent = 0;
+  progressInterval = setInterval(() => {
+    if (!playing) return;
+    percent += 1.8;
+    if (percent >= 100) percent = 0;
+    
+    progress.style.width = percent + "%";
+    
+    let currentSec = Math.floor((percent / 100) * 260);
+    let min = Math.floor(currentSec / 60);
+    let sec = currentSec % 60;
+    currentTimeEl.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+  }, 120);
 }
-
-// Volume Control
-volSlider.addEventListener("input", (e) => {
-  frame.style.opacity = e.target.value;
-  if (parseFloat(e.target.value) === 0) muted = true;
-  else muted = false;
-});
-
-// Auto update progress bar animation when playing
-setInterval(() => {
-  if (playing) {
-    progress.style.width = "100%";
-  }
-}, 1000);
-
 </script>
 </body>
 </html>
