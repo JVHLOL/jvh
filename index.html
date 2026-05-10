@@ -1,150 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Share Tech Mono', monospace;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Share Tech Mono', monospace;
+}
 
-    body {
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
-      position: relative;
-    }
+body {
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
 
-    /* FIXED GIF BACKGROUND (GitHub Pages safe) */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif") center/cover no-repeat;
-      z-index: -2;
-    }
+/* background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif") center/cover no-repeat;
+  z-index: -2;
+}
 
-    /* DARK OVERLAY */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: -1;
-    }
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
 
-    .container {
-      max-width: 900px;
-      padding: 30px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.08);
-      box-shadow: 0 0 30px rgba(255,255,255,0.15);
-      backdrop-filter: blur(10px);
-    }
+.container {
+  max-width: 900px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 30px rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+}
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 15px rgba(255,255,255,0.8);
-    }
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
 
-    #typed-text {
-      font-size: 1.2rem;
-      line-height: 2rem;
-      min-height: 220px;
-      white-space: pre-line;
-      border-right: 3px solid white;
-      display: inline-block;
-    }
+#typed-text {
+  font-size: 1.2rem;
+  min-height: 200px;
+  white-space: pre-line;
+  border-right: 3px solid white;
+}
 
-    .links {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-    }
+/* LINKS */
+.links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
 
-    .social {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.links img {
+  width: 70px;
+  transition: 0.3s;
+  filter: drop-shadow(0 0 10px white);
+}
 
-    .links img {
-      width: 70px;
-      height: 70px;
-      transition: 0.3s;
-      filter: drop-shadow(0 0 10px white);
-    }
+.links img:hover {
+  transform: scale(1.15);
+}
 
-    .links img:hover {
-      transform: scale(1.15);
-      filter: drop-shadow(0 0 20px white);
-    }
+/* MUSIC PLAYER */
+.music-player {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+}
 
-    .label {
-      margin-top: 8px;
-      font-size: 0.9rem;
-    }
-  </style>
+.controls button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  transform: scale(1.2);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.volume {
+  margin-top: 10px;
+}
+</style>
 </head>
 
 <body>
-  <div class="overlay"></div>
+<div class="overlay"></div>
 
-  <div class="container">
-    <h1>About Me</h1>
-    <div id="typed-text"></div>
+<div class="container">
 
-    <div class="links">
-      <div class="social">
-        <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
-        </a>
-        <div class="label">Roblox</div>
-      </div>
+<h1>About Me</h1>
 
-      <div class="social">
-        <a href="https://discord.com/users/jvh_o" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
-        </a>
-        <div class="label">Discord</div>
-      </div>
-    </div>
+<div id="typed-text"></div>
+
+<!-- links -->
+<div class="links">
+  <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+  </a>
+
+  <a href="https://discord.com" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+  </a>
+</div>
+
+<!-- MUSIC -->
+<div class="music-player">
+  <div id="song-info">Press play</div>
+
+  <div class="controls">
+    <button onclick="prev()">⏮</button>
+    <button onclick="toggle()" id="play">▶</button>
+    <button onclick="next()">⏭</button>
   </div>
 
-  <script>
-    const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
 
-I play Roblox, Brawl Stars, Clash Royale and a bunch of other games.
+  <div class="volume">
+    🔊 <input type="range" min="0" max="1" step="0.01" value="1" id="vol">
+  </div>
 
-Big fan of Flamingo and iShowSpeed 🔥
+  <iframe id="frame" style="display:none;"></iframe>
+</div>
 
-Favorite anime: Dragon Ball Z (DBZ)`;
+</div>
 
-    let i = 0;
-    const speed = 35;
-    const typedText = document.getElementById("typed-text");
+<script>
+/* TEXT */
+const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
 
-    function typeWriter() {
-      if (i < text.length) {
-        typedText.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, speed);
-      }
-    }
+I play Roblox, Brawl Stars, Clash Royale and more.
 
-    typeWriter();
-  </script>
+Big fan of Flamingo and iShowSpeed 🔥`;
+
+let i = 0;
+function type() {
+  if (i < text.length) {
+    document.getElementById("typed-text").innerHTML += text[i++];
+    setTimeout(type, 30);
+  }
+}
+type();
+
+/* MUSIC */
+const songs = [
+  "https://open.spotify.com/embed/track/5pz158yrIuE2EmhafSlZDf",
+  "https://open.spotify.com/embed/track/1f5cbQtDrykjarZVrShaDI",
+  "https://open.spotify.com/embed/track/5sIcVo0Tv1kDGEqmtbRoqq",
+  "https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB",
+  "https://open.spotify.com/embed/track/6xV7Be6XEvkSnighmh2Tzj"
+];
+
+let index = 0;
+let playing = false;
+
+const frame = document.getElementById("frame");
+const playBtn = document.getElementById("play");
+const info = document.getElementById("song-info");
+
+function load() {
+  frame.src = songs[index] + "?autoplay=1";
+  info.innerText = "Playing track " + (index + 1);
+}
+
+function toggle() {
+  playing = !playing;
+
+  if (playing) {
+    load();
+    playBtn.innerText = "⏸";
+  } else {
+    frame.src = "";
+    playBtn.innerText = "▶";
+  }
+}
+
+function next() {
+  index = (index + 1) % songs.length;
+  if (playing) load();
+}
+
+function prev() {
+  index = (index - 1 + songs.length) % songs.length;
+  if (playing) load();
+}
+
+document.getElementById("vol").addEventListener("input", (e) => {
+  frame.style.opacity = e.target.value;
+});
+</script>
+
 </body>
 </html>
