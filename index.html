@@ -3,165 +3,222 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ㅤ</title>
+<title>Intro & Main Page</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Share Tech Mono', monospace;
+  /* Reset and base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Share Tech Mono', monospace;
+    /* Custom cursor */
+    cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png") 6 6, auto;
+  }
 
-  cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png") 6 6, auto;
-}
+  body, html {
+    height: 100%;
+    overflow: hidden;
+    background-color: #111; /* darker background */
+    color: white;
+  }
 
-body {
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  position: relative;
-}
+  /* Intro Screen */
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB3cTBnYWR1NGN2cjd6ODduZThjNmI2a3VxMW50dnZhbGhiN3o4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tZKET59fOmmDzzHMjY/giphy.gif")
-    center/cover no-repeat;
-  filter: brightness(0.35);
-  z-index: -3;
-}
+  #intro {
+    position: fixed;
+    inset: 0;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 99999;
+    overflow: hidden;
+    cursor: pointer;
+  }
 
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  padding: 6px;
-  pointer-events: none;
+  /* Raindrops container */
+  #rain {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
 
-  background: linear-gradient(
-    45deg,
-    rgba(255, 0, 0, 0.5),
-    rgba(255, 165, 0, 0.5),
-    rgba(255, 255, 0, 0.5),
-    rgba(0, 255, 0, 0.5),
-    rgba(0, 255, 255, 0.5),
-    rgba(0, 0, 255, 0.5),
-    rgba(238, 130, 238, 0.5),
-    rgba(255, 0, 0, 0.5)
-  );
+  /* Create multiple raindrops via pseudo elements */
+  /* We'll create 50 raindrops with animation */
+  #rain div {
+    position: absolute;
+    bottom: 100%;
+    width: 2px;
+    height: 15px;
+    background: linear-gradient(180deg, rgba(255 255 255 / 0.8), rgba(255 255 255 / 0));
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    border-radius: 50%;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 2px rgba(255 255 255 / 0.4));
+  }
 
-  background-size: 300% 300%;
-  animation: rainbow 8s linear infinite;
+  /* Animate raindrops falling */
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(10deg);
+      opacity: 0.7;
+    }
+    70% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(100vh) rotate(10deg);
+      opacity: 0;
+    }
+  }
 
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
+  /* We will create raindrops dynamically with different left + delay to spread them */
 
-@keyframes rainbow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
-}
+  /* "Click to Enter" glossy transparent text */
+  #intro-text {
+    position: relative;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.25);
+    -webkit-text-stroke: 1.5px #fff;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    user-select: none;
+    z-index: 2;
+    background: linear-gradient(45deg, rgba(255 255 255 / 0.35), rgba(255 255 255 / 0.02));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glossyShine 2.5s ease-in-out infinite;
+    cursor: pointer;
+  }
 
-.container {
-  max-width: 900px;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  z-index: 2;
-  position: relative;
-}
+  /* Glossy shimmer animation */
+  @keyframes glossyShine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
 
-h1 {
-  font-size: 3rem;
-}
+  /* Main content */
+  .container {
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    background: rgba(255 255 255 / 0.08);
+    backdrop-filter: blur(12px);
+    z-index: 2;
+    position: relative;
+    color: white;
+    display: none; /* hidden initially behind intro */
+    min-height: 100vh;
+    margin: auto;
+  }
 
-.birthday {
-  margin-top: 8px;
-  font-size: 1.2rem;
-  opacity: 0.85;
-}
+  body.revealed .container {
+    display: block;
+  }
 
-#typed-text {
-  font-size: 1.1rem;
-  min-height: 150px;
-  white-space: pre-line;
-}
+  h1 {
+    font-size: 3rem;
+  }
 
-.neon {
-  font-size: 1.7rem;
-  margin-top: 20px;
-  color: #fff;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
-}
+  .birthday {
+    margin-top: 8px;
+    font-size: 1.2rem;
+    opacity: 0.85;
+  }
 
-.links {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
+  #typed-text {
+    font-size: 1.1rem;
+    min-height: 150px;
+    white-space: pre-line;
+  }
 
-.links a {
-  display: inline-block;
-  padding: 12px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-}
+  .neon {
+    font-size: 1.7rem;
+    margin-top: 20px;
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff;
+  }
 
-.links a:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.15);
-}
+  .links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
 
-.links img {
-  width: 65px;
-}
+  .links a {
+    display: inline-block;
+    padding: 12px;
+    border-radius: 18px;
+    background: rgba(255 255 255 / 0.08);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+  }
 
-.music-player {
-  margin-top: 20px;
-  background: rgba(20, 20, 35, 0.92);
-  border-radius: 12px;
-  padding: 16px;
-}
+  .links a:hover {
+    transform: scale(1.1);
+    background: rgba(255 255 255 / 0.15);
+  }
 
-iframe {
-  width: 100%;
-  height: 152px;
-  border-radius: 8px;
-}
+  .links img {
+    width: 65px;
+  }
 
-.wolf {
-  position: fixed;
-  width: 38px;
-  height: 38px;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  animation: pop 0.15s ease-out;
-  z-index: 9999;
-}
+  .music-player {
+    margin-top: 20px;
+    background: rgba(20, 20, 35, 0.92);
+    border-radius: 12px;
+    padding: 16px;
+  }
 
-@keyframes pop {
-  from { transform: translate(-50%, -50%) scale(0.2); }
-  to { transform: translate(-50%, -50%) scale(1); }
-}
+  iframe {
+    width: 100%;
+    height: 152px;
+    border-radius: 8px;
+  }
+
+  .wolf {
+    position: fixed;
+    width: 38px;
+    height: 38px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: pop 0.15s ease-out;
+    z-index: 9999;
+  }
+
+  @keyframes pop {
+    from { transform: translate(-50%, -50%) scale(0.2); }
+    to { transform: translate(-50%, -50%) scale(1); }
+  }
 </style>
 </head>
 
 <body>
-  <div class="container">
+  <!-- Intro screen with rain and glossy text -->
+  <div id="intro">
+    <div id="intro-text">Click to Enter</div>
+    <div id="rain"></div>
+  </div>
+
+  <!-- Main content container hidden initially -->
+  <div class="container" aria-live="polite" aria-label="Main content">
     <h1>About Me</h1>
 
     <!-- 👇 BIRTHDAY ADDED HERE -->
@@ -170,25 +227,66 @@ iframe {
     <div id="typed-text"></div>
 
     <div class="links">
-      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" />
+      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank" rel="noopener noreferrer" title="Roblox Profile">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" alt="Roblox Logo" />
       </a>
 
-      <a href="https://discord.com/users/jvh_o" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" />
+      <a href="https://discord.com/users/jvh_o" target="_blank" rel="noopener noreferrer" title="Discord Profile">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord Icon" />
       </a>
     </div>
 
-    <div class="neon">Songs I Like</div>
+    <div class="neon" aria-label="Songs I Like">Songs I Like</div>
 
-    <div class="music-player">
+    <div class="music-player" aria-label="Spotify music player">
       <iframe
         src="https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB?utm_source=generator"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Spotify Player: Favorite Song"
+      ></iframe>
     </div>
   </div>
 
   <script>
+    // Create raindrops dynamically inside #rain
+    const rainContainer = document.getElementById('rain');
+    const raindropCount = 50;
+
+    for(let i = 0; i < raindropCount; i++) {
+      const drop = document.createElement('div');
+
+      // Random horizontal pos (0% to 100%)
+      drop.style.left = Math.random() * 100 + 'vw';
+
+      // Random delay so drops fall at different times
+      drop.style.animationDelay = (Math.random() * 5) + 's';
+
+      // Random duration so some are slower/faster (2-5s)
+      drop.style.animationDuration = (2 + Math.random() * 3) + 's';
+
+      // Random opacity and size for depth effect
+      const size = 1 + Math.random() * 2;
+      drop.style.width = size + 'px';
+      drop.style.height = (size * 7) + 'px'; // height proportionate to width
+
+      rainContainer.appendChild(drop);
+    }
+
+    // Handle intro screen click to reveal main content
+    const intro = document.getElementById('intro');
+    intro.addEventListener('click', () => {
+      intro.style.transition = 'opacity 1s ease';
+      intro.style.opacity = 0;
+      setTimeout(() => {
+        intro.style.display = 'none';
+        document.body.classList.add('revealed');
+        // Start typing after intro
+        type();
+      }, 1000);
+    });
+
+    // Typing text for main content
     const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
 I play Roblox, Brawl Stars, Clash Royale and more.
 Big fan of Flamingo and iShowSpeed 🔥`;
@@ -200,8 +298,8 @@ Big fan of Flamingo and iShowSpeed 🔥`;
         setTimeout(type, 50);
       }
     }
-    type();
 
+    // Wolf cursor effect - remains unchanged
     document.addEventListener("mousemove", (e) => {
       const img = document.createElement("img");
       img.src = "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
