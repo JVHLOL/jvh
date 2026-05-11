@@ -14,7 +14,13 @@
   box-sizing: border-box;
   font-family: 'Share Tech Mono', monospace;
 
-  cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png") 6 6, auto;
+  /* 3D pixel arrow — black / white / blue */
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'><rect x='2' y='2' width='1' height='1' fill='%23000'/><rect x='2' y='3' width='1' height='1' fill='%23000'/><rect x='3' y='3' width='1' height='1' fill='%23fff'/><rect x='2' y='4' width='1' height='1' fill='%23000'/><rect x='3' y='4' width='2' height='1' fill='%23fff'/><rect x='2' y='5' width='1' height='1' fill='%23000'/><rect x='3' y='5' width='3' height='1' fill='%23fff'/><rect x='2' y='6' width='1' height='1' fill='%23000'/><rect x='3' y='6' width='4' height='1' fill='%23fff'/><rect x='2' y='7' width='1' height='1' fill='%23000'/><rect x='3' y='7' width='5' height='1' fill='%23fff'/><rect x='2' y='8' width='1' height='1' fill='%23000'/><rect x='3' y='8' width='6' height='1' fill='%23fff'/><rect x='2' y='9' width='1' height='1' fill='%23000'/><rect x='3' y='9' width='3' height='1' fill='%23fff'/><rect x='6' y='9' width='1' height='1' fill='%23000'/><rect x='2' y='10' width='1' height='1' fill='%23000'/><rect x='3' y='10' width='2' height='1' fill='%23fff'/><rect x='5' y='10' width='1' height='1' fill='%23000'/><rect x='6' y='10' width='1' height='1' fill='%231e90ff'/><rect x='7' y='10' width='1' height='1' fill='%23000'/><rect x='2' y='11' width='1' height='1' fill='%23000'/><rect x='3' y='11' width='1' height='1' fill='%23fff'/><rect x='4' y='11' width='1' height='1' fill='%23000'/><rect x='7' y='11' width='1' height='1' fill='%231e90ff'/><rect x='8' y='11' width='1' height='1' fill='%23000'/><rect x='2' y='12' width='2' height='1' fill='%23000'/><rect x='8' y='12' width='1' height='1' fill='%231e90ff'/><rect x='9' y='12' width='1' height='1' fill='%23000'/></svg>") 2 2, auto;
+}
+
+/* 3D pixel pointing hand for clickable things */
+a, button, .links a {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'><rect x='6' y='1' width='1' height='1' fill='%23000'/><rect x='7' y='1' width='1' height='1' fill='%23fff'/><rect x='8' y='1' width='1' height='1' fill='%23000'/><rect x='6' y='2' width='1' height='1' fill='%23000'/><rect x='7' y='2' width='1' height='1' fill='%23fff'/><rect x='8' y='2' width='1' height='1' fill='%23000'/><rect x='6' y='3' width='1' height='1' fill='%23000'/><rect x='7' y='3' width='1' height='1' fill='%23fff'/><rect x='8' y='3' width='1' height='1' fill='%23000'/><rect x='6' y='4' width='1' height='1' fill='%23000'/><rect x='7' y='4' width='1' height='1' fill='%23fff'/><rect x='8' y='4' width='1' height='1' fill='%23000'/><rect x='4' y='5' width='1' height='1' fill='%23000'/><rect x='5' y='5' width='1' height='1' fill='%23fff'/><rect x='6' y='5' width='1' height='1' fill='%23000'/><rect x='7' y='5' width='1' height='1' fill='%23fff'/><rect x='8' y='5' width='1' height='1' fill='%23000'/><rect x='9' y='5' width='1' height='1' fill='%23fff'/><rect x='10' y='5' width='1' height='1' fill='%23000'/><rect x='3' y='6' width='1' height='1' fill='%23000'/><rect x='4' y='6' width='1' height='1' fill='%23fff'/><rect x='5' y='6' width='1' height='1' fill='%23000'/><rect x='6' y='6' width='1' height='1' fill='%23fff'/><rect x='7' y='6' width='1' height='1' fill='%23fff'/><rect x='8' y='6' width='1' height='1' fill='%23fff'/><rect x='9' y='6' width='1' height='1' fill='%23000'/><rect x='10' y='6' width='1' height='1' fill='%23fff'/><rect x='11' y='6' width='1' height='1' fill='%23000'/><rect x='3' y='7' width='1' height='1' fill='%23000'/><rect x='4' y='7' width='1' height='1' fill='%23fff'/><rect x='5' y='7' width='6' height='1' fill='%23fff'/><rect x='11' y='7' width='1' height='1' fill='%23000'/><rect x='3' y='8' width='1' height='1' fill='%23000'/><rect x='4' y='8' width='7' height='1' fill='%23fff'/><rect x='11' y='8' width='1' height='1' fill='%231e90ff'/><rect x='12' y='8' width='1' height='1' fill='%23000'/><rect x='4' y='9' width='1' height='1' fill='%23000'/><rect x='5' y='9' width='6' height='1' fill='%23fff'/><rect x='11' y='9' width='1' height='1' fill='%231e90ff'/><rect x='12' y='9' width='1' height='1' fill='%23000'/><rect x='4' y='10' width='1' height='1' fill='%23000'/><rect x='5' y='10' width='6' height='1' fill='%23fff'/><rect x='11' y='10' width='1' height='1' fill='%231e90ff'/><rect x='12' y='10' width='1' height='1' fill='%23000'/><rect x='4' y='11' width='1' height='1' fill='%23000'/><rect x='5' y='11' width='6' height='1' fill='%23fff'/><rect x='11' y='11' width='1' height='1' fill='%23000'/><rect x='5' y='12' width='1' height='1' fill='%23000'/><rect x='6' y='12' width='5' height='1' fill='%23fff'/><rect x='11' y='12' width='1' height='1' fill='%23000'/><rect x='5' y='13' width='6' height='1' fill='%23000'/></svg>") 8 2, pointer;
 }
 
 body {
@@ -82,9 +88,7 @@ body::after {
   position: relative;
 }
 
-h1 {
-  font-size: 3rem;
-}
+h1 { font-size: 3rem; }
 
 .birthday {
   margin-top: 8px;
@@ -126,9 +130,7 @@ h1 {
   background: rgba(255, 255, 255, 0.15);
 }
 
-.links img {
-  width: 65px;
-}
+.links img { width: 65px; }
 
 .music-player {
   margin-top: 20px;
@@ -159,75 +161,23 @@ iframe {
 }
 </style>
 </head>
-
 <body>
   <div class="container">
     <h1>About Me</h1>
-
-    <!-- 👇 BIRTHDAY ADDED HERE -->
-    <div class="birthday">Birthday: 2/21/2012</div>
+    <p class="birthday">Birthday: 2/21/2012</p>
 
     <div id="typed-text"></div>
 
+    <p class="neon">Songs I Like</p>
+
     <div class="links">
-      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" />
-      </a>
-
-      <a href="https://discord.com/users/jvh_o" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" />
-      </a>
+      <a href="#"><img src="" alt="link 1" /></a>
+      <a href="#"><img src="" alt="link 2" /></a>
     </div>
-
-    <div class="neon">Songs I Like</div>
 
     <div class="music-player">
-      <iframe
-        src="https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB?utm_source=generator"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <iframe src="" title="music"></iframe>
     </div>
   </div>
-
-  <script>
-    const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
-I play Roblox, Brawl Stars, Clash Royale and more.
-Big fan of Flamingo and iShowSpeed 🔥`;
-
-    let i = 0;
-    function type() {
-      if (i < text.length) {
-        document.getElementById("typed-text").innerHTML += text[i++];
-        setTimeout(type, 50);
-      }
-    }
-    type();
-
-    document.addEventListener("mousemove", (e) => {
-      const img = document.createElement("img");
-      img.src = "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
-      img.className = "wolf";
-      img.style.left = e.clientX + "px";
-      img.style.top = e.clientY + "px";
-      document.body.appendChild(img);
-
-      let y = e.clientY;
-      let velocity = 0;
-
-      function fall() {
-        velocity += 0.6;
-        y += velocity;
-        img.style.top = y + "px";
-
-        if (y > window.innerHeight + 120) {
-          img.remove();
-          return;
-        }
-
-        requestAnimationFrame(fall);
-      }
-
-      fall();
-    });
-  </script>
 </body>
 </html>
