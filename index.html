@@ -8,12 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
 <style>
-/* === ORIGINAL STYLES (unchanged, clean) === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Share Tech Mono', monospace;
+
   cursor: url("https://cdn.custom-cursor.com/packs/2122/pack2747.png") 6 6, auto;
 }
 
@@ -25,7 +25,6 @@ body {
   align-items: center;
   color: white;
   position: relative;
-  background: #000; /* fallback if gif fails */
 }
 
 body::before {
@@ -158,120 +157,11 @@ iframe {
   from { transform: translate(-50%, -50%) scale(0.2); }
   to { transform: translate(-50%, -50%) scale(1); }
 }
-
-/* ========= ADDED INTRO OVERLAY ========== */
-
-#introOverlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0,0,0,0.95);
-  z-index: 99999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  animation: fadeIn 1s ease;
-}
-
-/* Glossy transparent text with background blur */
-#introText {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 4rem;
-  color: rgba(255, 255, 255, 0.7);
-  -webkit-text-stroke: 1px rgba(255,255,255,0.15);
-  text-shadow:
-    0 0 5px rgba(255,255,255,0.2),
-    0 0 10px rgba(255,255,255,0.15),
-    0 0 20px rgba(255,255,255,0.25),
-    0 0 40px rgba(255,255,255,0.1);
-  backdrop-filter: blur(8px); /* glossy effect */
-  padding: 12px 40px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  letter-spacing: 0.3em;
-  transition: color 0.3s ease;
-  user-select:none;
-}
-
-#introText:hover {
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow:
-    0 0 7px rgba(255,255,255,0.8),
-    0 0 15px rgba(255,255,255,0.7),
-    0 0 30px rgba(255,255,255,0.75),
-    0 0 50px rgba(255,255,255,0.4);
-  cursor: pointer;
-}
-
-/* Fade out animation */
-.fade-out {
-  animation: fadeOut 0.8s forwards;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-@keyframes fadeOut {
-  to {opacity: 0; visibility: hidden;}
-}
-
-/* ======== RAINING Js STYLE =========== */
-
-#rainCanvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Don't block clicks */
-  z-index: 99995;
-}
-
-.j-rain {
-  position: absolute;
-  color: #00baff;
-  font-weight: bold;
-  user-select: none;
-  font-family: monospace;
-  font-size: 14px;
-  opacity: 0.7;
-  filter: drop-shadow(0 0 3px #00baff);
-  text-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff;
-  pointer-events: none;
-  animation-name: fallJ;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes fallJ {
-  0% {
-    transform: translateY(-2em);
-    opacity: 0.7;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
-}
 </style>
 </head>
 
 <body>
-  
-  <!-- Intro overlay with click to enter -->
-  <div id="introOverlay" title="Click to enter">
-    <div id="introText">CLICK TO ENTER</div>
-  </div>
-  
-  <!-- Original container -->
-  <div class="container" style="opacity: 0;">
+  <div class="container">
     <h1>About Me</h1>
 
     <!-- 👇 BIRTHDAY ADDED HERE -->
@@ -280,12 +170,12 @@ iframe {
     <div id="typed-text"></div>
 
     <div class="links">
-      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank" rel="noopener noreferrer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" alt="Roblox Logo"/>
+      <a href="https://www.roblox.com/users/3442848028/profile" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg" />
       </a>
 
-      <a href="https://discord.com/users/jvh_o" target="_blank" rel="noopener noreferrer">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord Logo" />
+      <a href="https://discord.com/users/jvh_o" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" />
       </a>
     </div>
 
@@ -294,112 +184,50 @@ iframe {
     <div class="music-player">
       <iframe
         src="https://open.spotify.com/embed/track/7KA4W4McWYRpgf0fWsJZWB?utm_source=generator"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"></iframe>
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
   </div>
 
-  <!-- Canvas container for the raining Js -->
-  <div id="rainCanvas"></div>
-
-<script>
-  // === ORIGINAL TYPING SCRIPT ===
-  const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
+  <script>
+    const text = `I love dogs and cars. My favorite colors are blue, red, black, green and more.
 I play Roblox, Brawl Stars, Clash Royale and more.
 Big fan of Flamingo and iShowSpeed 🔥`;
 
-  let i = 0;
-  function type() {
-    if (i < text.length) {
-      document.getElementById("typed-text").innerHTML += text[i++];
-      setTimeout(type, 50);
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        document.getElementById("typed-text").innerHTML += text[i++];
+        setTimeout(type, 50);
+      }
     }
-  }
+    type();
 
-  // Start typing only after intro is gone
-  const container = document.querySelector('.container');
-  const introOverlay = document.getElementById('introOverlay');
-  const rainCanvas = document.getElementById('rainCanvas');
+    document.addEventListener("mousemove", (e) => {
+      const img = document.createElement("img");
+      img.src = "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
+      img.className = "wolf";
+      img.style.left = e.clientX + "px";
+      img.style.top = e.clientY + "px";
+      document.body.appendChild(img);
 
-  // Keep track of rain drops
-  const maxRainDrops = 60;
-  const rainDrops = [];
+      let y = e.clientY;
+      let velocity = 0;
 
-  // Helper random function
-  function random(min, max) {
-    return Math.random() * (max - min) + min;
-  }
+      function fall() {
+        velocity += 0.6;
+        y += velocity;
+        img.style.top = y + "px";
 
-  function createRainDrop() {
-    const drop = document.createElement('div');
-    drop.className = 'j-rain';
-    drop.textContent = 'J';
-    drop.style.left = random(0, window.innerWidth) + 'px';
-    drop.style.fontSize = random(12, 24) + 'px';
-    drop.style.opacity = random(0.3, 0.9);
-    // Animation duration between 3-6 seconds for natural effect
-    drop.style.animationDuration = random(3,6) + 's';
+        if (y > window.innerHeight + 120) {
+          img.remove();
+          return;
+        }
 
-    // Set delay so they don't start all at once
-    drop.style.animationDelay = random(0,6) + 's';
-
-    rainCanvas.appendChild(drop);
-    rainDrops.push(drop);
-
-    // Remove drop after animation ends to limit DOM size
-    drop.addEventListener('animationend', () => {
-      drop.remove();
-      // replace with new drop
-      createRainDrop();
-    });
-  }
-
-  // Fill the initial rain drops
-  for(let j = 0; j < maxRainDrops; j++) {
-    createRainDrop();
-  }
-
-  // Intro overlay click handler - fades out intro and shows content
-  introOverlay.addEventListener('click', () => {
-    introOverlay.classList.add('fade-out');
-    setTimeout(() => {
-      introOverlay.style.display = 'none';
-      container.style.transition = 'opacity 0.8s ease';
-      container.style.opacity = 1;
-      // Start typing text after fade-in
-      type();
-    }, 800);
-  });
-
-  // === ORIGINAL WOLF FOLLOWER SCRIPT ===
-  // Create wolf images on mousemove with falling down animation
-  document.addEventListener("mousemove", (e) => {
-    const img = document.createElement("img");
-    img.src = "https://minecraft.wiki/images/thumb/Wolf_JE2_BE2.png/120px-Wolf_JE2_BE2.png";
-    img.className = "wolf";
-    img.style.left = e.clientX + "px";
-    img.style.top = e.clientY + "px";
-    document.body.appendChild(img);
-
-    let y = e.clientY;
-    let velocity = 0;
-
-    function fall() {
-      velocity += 0.6;
-      y += velocity;
-      img.style.top = y + "px";
-
-      if (y > window.innerHeight + 120) {
-        img.remove();
-        return;
+        requestAnimationFrame(fall);
       }
 
-      requestAnimationFrame(fall);
-    }
-
-    fall();
-  });
-</script>
-
+      fall();
+    });
+  </script>
 </body>
 </html>
